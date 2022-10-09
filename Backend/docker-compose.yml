@@ -1,0 +1,34 @@
+version: '3'
+name: 'Progetto-TAASS'
+
+services:
+  #SERVICE: User
+  dbusers:
+    image: "postgres"
+    container_name: dbusers
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: users
+      POSTGRES_USER: easychef
+      POSTGRES_PASSWORD: easychef-pwd
+      restart: unless-stopped
+
+  user-service:
+    build:
+      context: ./user-service
+      #dockerfile: Dockerfile
+    image: user-service
+    container_name: user-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dbusers:5432/users
+      - SPRING_DATASOURCE_USERNAME=easychef
+      - SPRING_DATASOURCE_PASSWORD=easychef-pwd
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8081:8081"
+    depends_on:
+      - dbusers
+
+  #SERVICE: Recipe
+  # TODO

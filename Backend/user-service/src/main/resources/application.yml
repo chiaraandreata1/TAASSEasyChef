@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/users
+    username: easychef
+    password: easychef-pwd
+  application:
+    name: user-service
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: 'false'
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    hibernate:
+      ddl-auto: update
+server:
+  port: '8081'
+
+#NO DOCKER : jdbc:postgresql://localhost:5432/users
+#CON DOCKER: jdbc:postgresql://dbusers:5432/users
+

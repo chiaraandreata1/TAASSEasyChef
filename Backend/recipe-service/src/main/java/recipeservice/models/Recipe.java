@@ -2,6 +2,7 @@ package recipeservice.models;
 
 import java.util.List;
 
+@JsonIgnoreProperties({"hybernateLazyInitializer","handler"})
 @Entity
 public class Recipe {
     @Id

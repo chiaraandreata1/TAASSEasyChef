@@ -1,5 +1,6 @@
 package recipeservice.repositories;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import recipeservice.models.Recipe;
 
 import java.util.List;

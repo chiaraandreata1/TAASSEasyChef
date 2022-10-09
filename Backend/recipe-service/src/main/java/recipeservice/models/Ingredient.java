@@ -1,5 +1,11 @@
 package recipeservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @JsonIgnoreProperties({"hybernateLazyInitializer","handler"})
 @Entity
 public class Ingredient {

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Recipe</title>
+    <!-- normalize -->
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <!-- font-awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <!-- main css -->
+    <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<!-- TODO: rendere la pagina visibile solo a chi è loggato-->
+<body>
+<!-- nav  -->
+<nav class="navbar">
+    <div class="nav-center">
+        <div class="nav-header">
+            <a href="index.html" class="nav-logo">
+                <img src="./assets/logo1.jpg">
+            </a>
+            <button class="nav-btn btn">
+                <i class="fas fa-align-justify"></i>
+            </button>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link"> home </a>
+            <a href="add-recipe.html" class="nav-link"> add recipe </a>
+            <a href="add-ingredient.html" class="nav-link"> add ingredient </a>
+            <a href="profile.html" class="nav-link"> profile </a>
+            <div class="nav-link contact-link">
+                <a href="login.html" class="btn"> Login </a>
+                <a class="btn"> Logout </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- end of nav -->
+<main class="page">
+  <section class="contact-container">
+      <article class="contact-info">
+            <h3>Create New Recipe</h3>
+            <p>
+                Insert here your newest recipe and share it with EasyChef community!
+            </p>
+             <img
+                    src="./assets/main.jpeg"
+                    alt="RecipeImage"
+                    class="img about-img"
+             />
+        </article>
+        <article>
+            <form class="form contact-form">
+                <div class="form-row">
+                    <h5>Recipe Title</h5>
+                    <input type="text" name="name" id="title" class="form-input" />
+                </div>
+                <div>
+                    <h5>Chef Name:</h5> <label html="chefName" id="chefName" class="form-label">Mario Rossi</label><!-- TODO: prendere il nome dell'utente-->
+                </div>
+                <div class="form-row">
+                    <h5>Portions:</h5>
+                    <input type="number" value="1" min="1" name="portions" id="portions" class="form-input" />
+                </div>
+                <div class="form-row">
+                    <h5>Cooking Time (in minutes):</h5>
+                    <input type="number" value="0" min="0" name="portions" id="cookingTime" class="form-input" />
+                </div>
+                <div>
+                    <h5>Cooking Method</h5>
+                    <input type="radio" id="cookingMethod1" name="cookingMethod" value="cookingMethod"><label>Oven</label>
+                    <input type="radio" id="cookingMethod2" name="cookingMethod" value="cookingMethod"><label>Cooker</label>
+                    <input type="radio" id="cookingMethod3" name="cookingMethod" value="cookingMethod"><label>Fryer</label>
+                    <input type="radio" id="cookingMethod4" name="cookingMethod" value="cookingMethod"><label>Grill</label>
+                    <input type="radio" id="cookingMethod5" name="cookingMethod" value="cookingMethod"  checked="checked"><label>No-cooking</label>
+                </div>
+                </br>
+                <div>
+                    <h5>Recipe Category</h5>
+                    <input type="radio" id="category1" name="category" value="category">Pasta
+                    <input type="radio" id="category2" name="category" value="category">Soup
+                    <input type="radio" id="category3" name="category" value="category">Fish & Seafood
+                    <input type="radio" id="category4" name="category" value="category">Meat
+                    <input type="radio" id="category5" name="category" value="category">Vegan
+                    <input type="radio" id="category6" name="category" value="category">Ethnic
+                    <input type="radio" id="category7" name="category" value="category">Sandwich
+                    <input type="radio" id="category8" name="category" value="category">Dessert
+                    <input type="radio" id="category9" name="category" value="category" checked="checked">Other
+                </div>
+                </br>
+                <div>
+                    <h5>Select Ingredients</h5> <!-- TODO: rendere la lista degli ingredienti dinamica -->
+                    <input type="checkbox" id="ingredient1" name="ingredient" value="ingredient">Zucchero
+                    <input type="checkbox" id="ingredient2" name="ingredient" value="ingredient">Farina
+                    <input type="checkbox" id="ingredient3" name="ingredient" value="ingredient">Sale
+                    <input type="checkbox" id="ingredient4" name="ingredient" value="ingredient">Zucca
+                    <input type="checkbox" id="ingredient5" name="ingredient" value="ingredient">Formaggio
+                </div>
+                </br>
+                <div class="form-row">
+                    <h5>Insert Preparation Procedure</h5>
+                    <textarea name="procedure" id="procedure" class="form-textarea"></textarea>
+                </div>
+                <button type="submit" class="btn btn-block">
+                    submit
+                </button>
+            </form>
+     </article>
+  </section>
+
+</main>
+<!-- footer -->
+<footer class="page-footer">
+    <p>
+        Progetto di TAASS di Chiara Andreata
+    </p>
+</footer>
+<script src="./js/app.js"></script>
+</body>
+</html>

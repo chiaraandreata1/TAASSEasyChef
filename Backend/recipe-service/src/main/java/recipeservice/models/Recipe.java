@@ -19,6 +19,8 @@ public class Recipe {
     private Integer numPortions;
     private Integer cookingTime;
     private String cookingMethod;
+    private String category;
+    private String ingredientsQuantity;
     private List<Ingredient> ingredients;
 
     public Long getIdChef() {
@@ -27,6 +29,22 @@ public class Recipe {
 
     public void setIdChef(Long idChef) {
         this.idChef = idChef;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getIngredientsQuantity() {
+        return ingredientsQuantity;
+    }
+
+    public void setIngredientsQuantity(String ingredientsQuantity) {
+        this.ingredientsQuantity = ingredientsQuantity;
     }
 
     public String getTitle() {

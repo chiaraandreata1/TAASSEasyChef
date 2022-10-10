@@ -21,6 +21,7 @@ public class Recipe {
     private String cookingMethod;
     private String category;
     private String ingredientsQuantity;
+    private String procedure;
     private List<Ingredient> ingredients;
 
     public Long getIdChef() {
@@ -33,6 +34,14 @@ public class Recipe {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getProcedure() {
+        return procedure;
+    }
+
+    public void setProcedure(String procedure) {
+        this.procedure = procedure;
     }
 
     public void setCategory(String category) {

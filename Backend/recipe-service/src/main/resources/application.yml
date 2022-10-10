@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/recipes
+    username: easychef
+    password: easychef-pwd
+  application:
+    name: recipe-service
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: 'false'
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    hibernate:
+      ddl-auto: update
+server:
+  port: '8082'
+
+#NO DOCKER : jdbc:postgresql://localhost:5433/recipes
+#CON DOCKER: jdbc:postgresql://dbrecipes:5433/recipes
+

@@ -1,5 +1,5 @@
 version: '3'
-name: 'Progetto-TAASS'
+#name: 'Progetto-TAASS'   TODO:capire perchè se decommentato da problemi
 
 services:
   #SERVICE: User
@@ -17,7 +17,7 @@ services:
   user-service:
     build:
       context: ./user-service
-      #dockerfile: Dockerfile
+      dockerfile: Dockerfile
     image: user-service
     container_name: user-service
     environment:
@@ -45,7 +45,7 @@ services:
   recipe-service:
     build:
       context: ./recipe-service
-      #dockerfile: Dockerfile
+      dockerfile: Dockerfile
     image: recipe-service
     container_name: recipe-service
     environment:

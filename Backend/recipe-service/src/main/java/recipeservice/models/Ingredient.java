@@ -2,15 +2,13 @@ package recipeservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@JsonIgnoreProperties({"hybernateLazyInitializer","handler"})
+@JsonIgnoreProperties({"hybernateLazyInitializer","handler"}) //ogni volta che aggiungo una entity permette l'aggiornamento lazy
 @Entity
 public class Ingredient {
     @Id
-    @Column(name = "id_ingredient", nullable = false)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long idIngredient;
     private String nameIngredient;
     //private String quantityIngredient;

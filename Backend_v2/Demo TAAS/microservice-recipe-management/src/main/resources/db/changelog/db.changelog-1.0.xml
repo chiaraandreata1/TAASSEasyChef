@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="sha">
+        <sql>
+            CREATE TABLE recipes (
+                                     id BIGINT NOT NULL AUTO_INCREMENT,
+                                     title VARCHAR(255) NOT NULL,
+                                     author VARCHAR(255) NOT NULL,
+                                     category VARCHAR(255),
+                                     num_portions INT NOT NULL,
+                                     cooking_time FLOAT NOT NULL,
+                                     cooking_method VARCHAR(255) NOT NULL,
+                                     ingredients_quantity INT NOT NULL,
+                                     recipe_procedure VARCHAR(255) NOT NULL,
+                                     chef_id BIGINT NOT NULL,
+                                     CONSTRAINT pk_id PRIMARY KEY (id)
+
+            )
+        </sql>
+        <rollback>
+            DROP TABLE course;
+        </rollback>
+    </changeSet>
+    <changeSet id="2" author="sha">
+        <sql>
+            CREATE TABLE ingredients (
+                                         id BIGINT NOT NULL AUTO_INCREMENT,
+                                         ingredient_name VARCHAR(255) NOT NULL,
+                                         CONSTRAINT pk_id PRIMARY KEY (id)
+            );
+        </sql>
+        <rollback>
+            DROP TABLE transaction;
+        </rollback>
+    </changeSet>
+    <changeSet id="3" author="sha">
+        <sql>
+            INSERT INTO ingredients (ingredient_name) VALUES('Carote');
+            INSERT INTO ingredients (ingredient_name) VALUES('Cipolla');
+            INSERT INTO ingredients (ingredient_name) VALUES('Rosmarino');
+        </sql>
+        <rollback>
+            TRUNCATE TABLE course;
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

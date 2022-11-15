@@ -1,32 +1,38 @@
 version: '3'
-#name: 'Progetto-TAASS'   TODO:capire perchè se decommentato da problemi
 
 services:
-  #SERVICE: User
+
+#SERVICE: User
   dbusers:
     image: "postgres"
     container_name: dbusers
     ports:
       - "5432:5432"
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/
+    #networks:
+    #  - recipes
     environment:
       POSTGRES_DB: users
       POSTGRES_USER: easychef
-      POSTGRES_PASSWORD: easychef-pwd
+      POSTGRES_PASSWORD: easychef
       restart: unless-stopped
 
   user-service:
-    build:
-      context: ./user-service
-      dockerfile: Dockerfile
+    build: .
+    #  context: ./user-service
+    #  dockerfile: ./Dockerfile
     image: user-service
     container_name: user-service
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://dbusers:5432/users
       - SPRING_DATASOURCE_USERNAME=easychef
-      - SPRING_DATASOURCE_PASSWORD=easychef-pwd
+      - SPRING_DATASOURCE_PASSWORD=easychef
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
       - "8081:8081"
+    #networks:
+     # - recipes
     depends_on:
       - dbusers
 
@@ -36,24 +42,32 @@ services:
     container_name: dbrecipes
     ports:
       - "5433:5433"
+    networks:
+      - recipes
     environment:
       POSTGRES_DB: recipes
       POSTGRES_USER: easychef
-      POSTGRES_PASSWORD: easychef-pwd
+      POSTGRES_PASSWORD: easychef
       restart: unless-stopped
 
   recipe-service:
     build:
-      context: ./recipe-service
+      context: ./recipeservice
       dockerfile: Dockerfile
     image: recipe-service
     container_name: recipe-service
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://dbrecipes:5433/recipes
       - SPRING_DATASOURCE_USERNAME=easychef
-      - SPRING_DATASOURCE_PASSWORD=easychef-pwd
+      - SPRING_DATASOURCE_PASSWORD=easychef
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
       - "8082:8082"
+    networks:
+      - recipes
     depends_on:
       - dbrecipes
+
+networks:
+  recipes:
+    driver: bridge

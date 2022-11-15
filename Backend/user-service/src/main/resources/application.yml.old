@@ -1,11 +1,11 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/recipes
+    url: jdbc:postgresql://dbusers:5432/users
     username: easychef
-    password: easychef-pwd
+    password: easychef
   application:
-    name: recipe-service
+    name: user-service
   jpa:
     properties:
       hibernate:
@@ -15,8 +15,8 @@ spring:
     hibernate:
       ddl-auto: update
 server:
-  port: '8082'
+  port: '8081'
 
-#NO DOCKER : jdbc:postgresql://localhost:5433/recipes
-#CON DOCKER: jdbc:postgresql://dbrecipes:5433/recipes
+#NO DOCKER : jdbc:postgresql://localhost:5432/users
+#CON DOCKER: jdbc:postgresql://dbusers:5432/users
 

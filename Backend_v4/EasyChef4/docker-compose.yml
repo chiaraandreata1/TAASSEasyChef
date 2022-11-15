@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  dbchef:
+    container_name: dbchef
+    image: "postgres"
+    ports:
+      - "5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      -
+    environment:
+      POSTGRES_DB: chefdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      restart: unless-stopped
+
+
+  app:
+    build: .
+    image: chefservice
+    container_name: chefservice
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dbchef
+    networks:
+      - appbootrestnet
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:postgresql://dbchef:5432/chefdb
+     - SPRING_DATASOURCE_USERNAME=admin
+     - SPRING_DATASOURCE_PASSWORD=admin
+     - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+volumes:
+  db-data:
+  pgadmin-data:
+networks:
+  appbootrestnet:
+    driver: bridge
+# docker-compose build && docker-compose up
+

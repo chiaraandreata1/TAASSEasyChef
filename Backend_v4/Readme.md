@@ -16,3 +16,12 @@ Alternativa ai comandi manuali con Maven si può usare:
 3. `docker-compose build` -> oppure `docker-compose build <nome_container_che_voglio_aggiornare>`
 4. `docker-compose up` -> oppure `docker-compose up <nome_container_che_voglio_lanciare>`
 5. Tutti questi comandi vanno ovviamente lanciati in ordine e nella cartella dove si trova il file `mvnw` e il `docker-compose.yml` e `Dockerfile`
+
+
+## Per creare un nuovo "servizio" in Intellij
+1. Andare sulla cartella root del progetto
+2. Selezionare "New" > "Module" > "Maven" > "Create from archetype"
+3. Compilare con i dati del pom.xml di EasyChef4
+4. Una volta creata la cartella bisogna cercare di avere un pom.xml simile a quello del progetto di EasyChef4 (con anche i tag XML di parent)
+5. Cliccare con il tasto destro sulla cartella del nuovo servizio creato > "Maven" > "Reload Project"
+6. Aggiungere i file che servono (Classi Java, application-properties.yml, docker-compose.yml, Dockerfile, etc.)

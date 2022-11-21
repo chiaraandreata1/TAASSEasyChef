@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/EasyChef4/pom.xml" />
+        <option value="$PROJECT_DIR$/RecipeService/pom.xml" />
       </list>
     </option>
   </component>

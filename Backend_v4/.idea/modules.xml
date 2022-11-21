@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Backend_v4.iml" filepath="$PROJECT_DIR$/.idea/Backend_v4.iml" />
       <module fileurl="file://$PROJECT_DIR$/EasyChef4/EasyChef4.iml" filepath="$PROJECT_DIR$/EasyChef4/EasyChef4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecipeService/RecipeService.iml" filepath="$PROJECT_DIR$/RecipeService/RecipeService.iml" />
     </modules>
   </component>
 </project>

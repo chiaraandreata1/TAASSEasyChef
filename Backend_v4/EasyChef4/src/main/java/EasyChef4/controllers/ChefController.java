@@ -31,9 +31,7 @@ public class ChefController {
 
     @PostMapping(value = "/chefs/create")
     public Chef postChef(@RequestBody Chef chef) {
-
-        Chef _chef = repository.save(new Chef(chef.getName()));
-        return _chef;
+        return repository.save(new Chef(chef.getUsername(), chef.getPassword()));
     }
 
     @DeleteMapping("/chefs/{id}")
@@ -61,9 +59,10 @@ public class ChefController {
         Optional<Chef> chefData = repository.findById(id);
 
         if (chefData.isPresent()) {
-            Chef _chef = chefData.get();
-            _chef.setName(chef.getName());
-            return new ResponseEntity<>(repository.save(_chef), HttpStatus.OK);
+            Chef c = chefData.get();
+            c.setUsername(chef.getUsername());
+            c.setPassword(chef.getPassword());
+            return new ResponseEntity<>(repository.save(c), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

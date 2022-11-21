@@ -1,11 +1,6 @@
 package Recipe4.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -38,13 +33,13 @@ public class Recipe {
     @Column(name = "procedure")
     private String procedure;
 
-    @Column(name = "ingredientsList")
-    private List<Ingredient> ingredientsList;
+    @ElementCollection
+    private List<Long> ingredientsList;
 
     public Recipe() {
     }
 
-    public Recipe(String title, Long idChef, Integer numPortions, Integer cookingTime, String cookingMethod, String category, String procedure, List<Ingredient> ingredientsList) {
+    public Recipe(String title, Long idChef, Integer numPortions, Integer cookingTime, String cookingMethod, String category, String procedure, List<Long> ingredientsList) {
         this.title = title;
         this.idChef = idChef;
         this.numPortions = numPortions;
@@ -119,11 +114,11 @@ public class Recipe {
         this.procedure = procedure;
     }
 
-    public List<Ingredient> getIngredientsList() {
+    public List<Long> getIngredientsList() {
         return ingredientsList;
     }
 
-    public void setIngredientsList(List<Ingredient> ingredientsList) {
+    public void setIngredientsList(List<Long> ingredientsList) {
         this.ingredientsList = ingredientsList;
     }
 }

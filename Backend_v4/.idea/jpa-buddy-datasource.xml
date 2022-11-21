@@ -3,6 +3,7 @@
   <component name="JpbDataSourceConfig">
     <data-sources>
       <data-source id="eeb07293-ed37-40ab-a5b4-52d39617da75" name="chefdb" url="jdbc:postgresql://localhost:5432/chefdb" driverClass="org.postgresql.Driver" />
+      <data-source id="823ad6f3-9aaf-457c-b18c-04a853b4d906" name="recipedb" url="jdbc:postgresql://localhost:5433/recipedb" driverClass="org.postgresql.Driver" />
     </data-sources>
   </component>
 </project>

@@ -16,8 +16,23 @@ services:
       POSTGRES_PASSWORD: admin
       restart: unless-stopped
 
+  dbrecipe:
+    container_name: dbrecipe
+    image: "postgres"
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-recipes-data:/var/lib/postgresql/data
+    networks:
+      - easychefnet
+    environment:
+      POSTGRES_DB: recipedb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      restart: unless-stopped
+
   chefservice:
-    build: EasyChef4
+    build: EasyChef4 #indica la cartella dove si trova il dockerfile di questo servizio
     image: chefservice
     container_name: chefservice
     ports:
@@ -33,9 +48,9 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       restart: unless-stopped
 
-
 volumes:
   db-data:
+  db-recipes-data:
 networks:
   easychefnet:
     driver: bridge

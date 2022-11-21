@@ -38,6 +38,11 @@ networks:
   easychefnet:
     driver: bridge
 
+
+
+
+
+
 # Comandi da lanciare in ordine per creare i container
 # docker-compose build
 # docker-compose up

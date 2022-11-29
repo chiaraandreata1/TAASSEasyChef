@@ -3,5 +3,5 @@ FROM openjdk
 VOLUME /tmp
 EXPOSE 8080
 ARG DEPENDENCY=target
-ADD ${DEPENDENCY}/*.jar gatewayservice.jar
-ENTRYPOINT ["java", "-jar", "/gatewayservice.jar"]
+ADD ${DEPENDENCY}/*.jar gateway-service.jar
+ENTRYPOINT ["java", "-jar", "/gateway-service.jar"]

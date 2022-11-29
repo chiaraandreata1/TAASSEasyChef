@@ -36,7 +36,7 @@ services:
     image: chefservice
     container_name: chefservice
     ports:
-      - "8080:8080"
+      - "8082:8080"
     depends_on:
       - dbchef
     networks:
@@ -64,6 +64,15 @@ services:
       SPRING_DATASOURCE_PASSWORD: admin
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       restart: unless-stopped
+
+  gatewayservice:
+    build: GatewayService #indica la cartella dove si trova il dockerfile di questo servizio
+    image: gatewayservice
+    container_name: gatewayservice
+    ports:
+      - "8080:8080"
+    networks:
+      - easychefnet
 
 
 volumes:

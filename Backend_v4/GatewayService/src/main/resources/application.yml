@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  spring:
+    application:
+      name: gateway-service
+    cloud:
+      gateway:
+        routes:
+          - id: chefservice
+            url: http://localhost:8082
+            predicates:
+              - Path = /api/v1/chefs/**
+          - id: recipeservice
+            url: http://localhost:8081
+            predicates:
+              - Path = /api/v1/ingredients/**
+              - Path = /api/v1/recipes/**

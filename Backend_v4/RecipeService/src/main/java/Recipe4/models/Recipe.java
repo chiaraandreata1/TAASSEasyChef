@@ -34,12 +34,15 @@ public class Recipe {
     private String procedure;
 
     @ElementCollection
-    private List<Long> ingredientsList;
+    private List<String> ingredientsList;
+
+    @ElementCollection
+    private List<Long> likesList;
 
     public Recipe() {
     }
 
-    public Recipe(String title, Long idChef, Integer numPortions, Integer cookingTime, String cookingMethod, String category, String procedure, List<Long> ingredientsList) {
+    public Recipe(String title, Long idChef, Integer numPortions, Integer cookingTime, String cookingMethod, String category, String procedure, List<String> ingredientsList, List<Long> likesList) {
         this.title = title;
         this.idChef = idChef;
         this.numPortions = numPortions;
@@ -48,6 +51,7 @@ public class Recipe {
         this.category = category;
         this.procedure = procedure;
         this.ingredientsList = ingredientsList;
+        this.likesList = likesList;
     }
 
     public long getId() {
@@ -114,11 +118,15 @@ public class Recipe {
         this.procedure = procedure;
     }
 
-    public List<Long> getIngredientsList() {
+    public List<String> getIngredientsList() {
         return ingredientsList;
     }
 
-    public void setIngredientsList(List<Long> ingredientsList) {
+    public void setIngredientsList(List<String> ingredientsList) {
         this.ingredientsList = ingredientsList;
     }
+
+    public List<Long> getLikesList() { return likesList; }
+
+    public void setLikesList(List<Long> likesList) { this.likesList = likesList;  }
 }

@@ -18,15 +18,15 @@ public class Chef {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "mail")
+    private String mail;
 
     public Chef() {
     }
 
-    public Chef(String username, String password) {
+    public Chef(String username, String mail) {
         this.username = username;
-        this.password = password;
+        this.mail = mail;
     }
 
     public long getId() {
@@ -45,11 +45,11 @@ public class Chef {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMail() {
+        return mail;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

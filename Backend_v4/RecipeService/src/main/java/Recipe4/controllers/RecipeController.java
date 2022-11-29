@@ -20,7 +20,7 @@ public class RecipeController {
     RecipeRepository repository;
 
     /* Per ottenere l'elenco di tutte le ricette */
-    @GetMapping("/recipes")
+    @GetMapping("/recipes/allrecipes")
     public List<Recipe> getAllRecipes() {
         System.out.println("Get all recipes...");
 
@@ -35,17 +35,17 @@ public class RecipeController {
     /*TODO: aggiungere GET per ottenere l'elenco ricette dato un certo ingrediente*/
 
     /* Per aggiungere una nuova ricetta*/
-    @PostMapping(value = "/recipes/create")
+    @PostMapping(value = "/recipes/createrecipe")
     public Recipe postRecipe(@RequestBody Recipe recipe) {
 
         Recipe _recip = repository.save(new Recipe( recipe.getTitle(), recipe.getIdChef(), recipe.getNumPortions(), recipe.getCookingTime(),
-                recipe.getCookingMethod(), recipe.getCategory(), recipe.getProcedure(), recipe.getIngredientsList()));
+                recipe.getCookingMethod(), recipe.getCategory(), recipe.getProcedure(), recipe.getIngredientsList(), recipe.getLikesList()));
 
         return _recip;
     }
 
     /* Per cancellare una ricetta dato l'id*/
-    @DeleteMapping("/recipes/{id}")
+    @DeleteMapping("/recipes/deleterecipe/{id}")
     public ResponseEntity<String> deleteRecipe(@PathVariable("id") long id) {
         System.out.println("Delete Recipes with ID = " + id + "...");
 
@@ -55,7 +55,7 @@ public class RecipeController {
     }
 
     /* Per cancellare TUTTE le ricette contenute nel db*/
-    @DeleteMapping("/recipes/deleteALL")
+    @DeleteMapping("/recipes/deleteallrecipes")
     public ResponseEntity<String> deleteAllRecipes() {
         System.out.println("Delete All Recipes...");
 
@@ -65,7 +65,7 @@ public class RecipeController {
     }
 
     /* per modificare i parametri di una ricetta dato il suo id  DA VEDERE SE HA SENSO TENERE*/
-    @PutMapping("/recipes/{id}")
+    @PutMapping("/recipes/editrecipe/{id}")
     public ResponseEntity<Recipe> updateRecipe(@PathVariable("id") long id, @RequestBody Recipe recipe) {
         System.out.println("Update Recipe with ID = " + id + "...");
 
@@ -81,6 +81,7 @@ public class RecipeController {
             _rec.setCategory(recipe.getCategory());
             _rec.setProcedure(recipe.getProcedure());
             _rec.setIngredientsList(recipe.getIngredientsList());
+            _rec.setLikesList(recipe.getLikesList());
 
             return new ResponseEntity<>(repository.save(_rec), HttpStatus.OK);
         } else {

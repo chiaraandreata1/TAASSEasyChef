@@ -19,7 +19,7 @@ public class ChefController {
     @Autowired
     ChefRepository repository;
 
-    @GetMapping("/chefs")
+    @GetMapping("/chefs/allchef")
     public List<Chef> getAllChefs() {
         System.out.println("Get all chefs...");
 
@@ -29,12 +29,12 @@ public class ChefController {
         return chefs;
     }
 
-    @PostMapping(value = "/chefs/create")
+    @PostMapping(value = "/chefs/createchef")
     public Chef postChef(@RequestBody Chef chef) {
-        return repository.save(new Chef(chef.getUsername(), chef.getPassword()));
+        return repository.save(new Chef(chef.getUsername(), chef.getMail()));
     }
 
-    @DeleteMapping("/chefs/{id}")
+    @DeleteMapping("/chefs/deletchef/{id}")
     public ResponseEntity<String> deleteChef(@PathVariable("id") long id) {
         System.out.println("Delete Chef with ID = " + id + "...");
 
@@ -43,7 +43,7 @@ public class ChefController {
         return new ResponseEntity<>("Chef has been deleted!", HttpStatus.OK);
     }
 
-    @DeleteMapping("/chefs/delete")
+    @DeleteMapping("/chefs/deleteallchef")
     public ResponseEntity<String> deleteAllChefs() {
         System.out.println("Delete All Chefs...");
 
@@ -52,7 +52,7 @@ public class ChefController {
         return new ResponseEntity<>("All chefs have been deleted!", HttpStatus.OK);
     }
 
-    @PutMapping("/chefs/{id}")
+    @PutMapping("/chefs/editchef/{id}")
     public ResponseEntity<Chef> updateChef(@PathVariable("id") long id, @RequestBody Chef chef) {
         System.out.println("Update Chef with ID = " + id + "...");
 
@@ -61,7 +61,7 @@ public class ChefController {
         if (chefData.isPresent()) {
             Chef c = chefData.get();
             c.setUsername(chef.getUsername());
-            c.setPassword(chef.getPassword());
+            c.setMail(chef.getMail());
             return new ResponseEntity<>(repository.save(c), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

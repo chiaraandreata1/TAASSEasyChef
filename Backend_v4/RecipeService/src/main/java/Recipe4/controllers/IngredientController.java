@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -20,7 +21,7 @@ public class IngredientController {
     IngredientRepository repository;
 
     /* Per ottenere l'elenco di tutti gli ingredienti */
-    @GetMapping("/ingredients")
+    @GetMapping("/ingredients/allingredients")
     public List<Ingredient> getAllIngredients() {
         System.out.println("Get all ingredients...");
 
@@ -31,11 +32,13 @@ public class IngredientController {
     }
 
     /*TODO: da capire come fare
-     Per avere un ingrediente passando il suo nome come stringa */
-   /* @GetMapping("/ingredientbyname/{ingredientName}")
-    public Ingredient ingredientByName(@PathVariable String ingredientName){
-        return IngredientRepository.findByNameIngredient(ingredientName);
-    }*/
+     Per avere un ingrediente passando il suo nome come stringa*/
+    @GetMapping(value = "ingredients/ingredientbyname/{name}")
+    public Optional<Ingredient> findByName(@PathVariable String name) {
+
+        Optional<Ingredient> ing = repository.findByName(name);
+        return ing;
+    }
 
     /* TODO: da capire come fare
      Per avere un ingrediente fornendo il suo id */
@@ -45,25 +48,27 @@ public class IngredientController {
     }*/
 
     /* Per creare un nuovo ingrediente*/
-    @PostMapping(value = "/ingredients/create")
+    @PostMapping(value = "/ingredients/createingredient")
     public Ingredient postIngredient(@RequestBody Ingredient ingredient) {
 
         Ingredient _ingred = repository.save(new Ingredient(ingredient.getName()));
+
         return _ingred;
     }
 
-    /* Per eliminare un ingrediente dato il suo Id */
-    @DeleteMapping("/ingredients/{id}")
+   /* TODO: da aggiustare
+     Per eliminare un ingrediente dato il suo Id */
+    /*@DeleteMapping("/ingredients/{id}")
     public ResponseEntity<String> deleteIngredient(@PathVariable("id") long id) {
         System.out.println("Delete Ingredient with ID = " + id + "...");
 
         repository.deleteById(id);
 
         return new ResponseEntity<>("Ingredient has been deleted!", HttpStatus.OK);
-    }
+    }*/
 
     /* Per eliminare TUTTI gli ingredienti */
-    @DeleteMapping("/ingredients/deleteALL")
+    @DeleteMapping("/ingredients/deleteallingredients")
     public ResponseEntity<String> deleteAllIngredients() {
         System.out.println("Delete All Ingredients...");
 

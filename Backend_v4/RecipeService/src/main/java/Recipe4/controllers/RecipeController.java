@@ -30,9 +30,25 @@ public class RecipeController {
         return recipes;
     }
 
-    /*TODO: aggiungere GET per ottenere l'elenco ricette dato l'idChef dell'utente che le ha create*/
-    /*TODO: aggiungere GET per ottenere l'elenco ricette dato un certo cookingMethod come stringa */
-    /*TODO: aggiungere GET per ottenere l'elenco ricette dato un certo ingrediente*/
+
+    /*per ottenere l'elenco ricette dato un certo ingrediente*/
+    @GetMapping(value = "recipes/recipesbycookingmethod/{cookingMethod}")
+    public List<Recipe> findByCookingMethod(@PathVariable String cookingMethod) {
+
+        List<Recipe> customers = repository.findByCookingMethod(cookingMethod);
+        return customers;
+    }
+
+    /*per ottenere l'elenco ricette dato l'idChef dell'utente che le ha create */
+    @GetMapping(value = "recipes/recipesbychef/{idChef}")
+    public List<Recipe> findByIdChef(@PathVariable Long idChef) {
+
+        List<Recipe> rec = repository.findByIdChef(idChef);
+        return rec;
+    }
+
+    /*TODO: aggiungere ricerca per elenco ingredienti*/
+    /*TODO: aggiungere ricerca per idChef nella lista ingredienti*/
 
     /* Per aggiungere una nuova ricetta*/
     @PostMapping(value = "/recipes/createrecipe")

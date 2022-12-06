@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -31,21 +30,14 @@ public class IngredientController {
         return ingredients;
     }
 
-    /*TODO: da capire come fare
-     Per avere un ingrediente passando il suo nome come stringa*/
-    @GetMapping(value = "ingredients/ingredientbyname/{name}")
-    public Optional<Ingredient> findByName(@PathVariable String name) {
 
-        Optional<Ingredient> ing = repository.findByName(name);
-        return ing;
+    /*Per avere un ingrediente passando il suo nome come stringa*/
+    @GetMapping(value = "ingredients/name/{name}")
+    public List<Ingredient> findByName(@PathVariable String name) {
+
+        List<Ingredient> customers = repository.findByName(name);
+        return customers;
     }
-
-    /* TODO: da capire come fare
-     Per avere un ingrediente fornendo il suo id */
-    /*@GetMapping("ingredientbyid/{idIngredient}")
-    public Ingredient ingredientById(@PathVariable Long idIngredient){
-        return IngredientRepository.findIngredientById(idIngredient);
-    }*/
 
     /* Per creare un nuovo ingrediente*/
     @PostMapping(value = "/ingredients/createingredient")
@@ -56,16 +48,15 @@ public class IngredientController {
         return _ingred;
     }
 
-   /* TODO: da aggiustare
-     Per eliminare un ingrediente dato il suo Id */
-    /*@DeleteMapping("/ingredients/{id}")
-    public ResponseEntity<String> deleteIngredient(@PathVariable("id") long id) {
-        System.out.println("Delete Ingredient with ID = " + id + "...");
+   /* Per eliminare un ingrediente dato il suo nome */
+    @DeleteMapping("/ingredients/deletebyname/{name}")
+    public ResponseEntity<String> deleteIngredient(@PathVariable("name") String name) {
+        System.out.println("Delete Ingredient = " + name + "...");
 
-        repository.deleteById(id);
+        repository.deleteById(name);
 
         return new ResponseEntity<>("Ingredient has been deleted!", HttpStatus.OK);
-    }*/
+    }
 
     /* Per eliminare TUTTI gli ingredienti */
     @DeleteMapping("/ingredients/deleteallingredients")

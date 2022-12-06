@@ -1,7 +1,9 @@
 package EasyChef4.controllers;
 
 import EasyChef4.models.Chef;
+import EasyChef4.rabbit.MQConfig;
 import EasyChef4.repositories.ChefRepository;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("api/v1")
 public class ChefController {
 
     @Autowired
@@ -27,6 +29,13 @@ public class ChefController {
         repository.findAll().forEach(chefs::add);
 
         return chefs;
+    }
+
+    @GetMapping(value = "chefs/findById/{id}")
+    public List<Chef> findByName(@PathVariable Long id) {
+
+        List<Chef> customers = repository.findById(id);
+        return customers;
     }
 
     @PostMapping(value = "/chefs/createchef")
@@ -56,15 +65,15 @@ public class ChefController {
     public ResponseEntity<Chef> updateChef(@PathVariable("id") long id, @RequestBody Chef chef) {
         System.out.println("Update Chef with ID = " + id + "...");
 
-        Optional<Chef> chefData = repository.findById(id);
-
-        if (chefData.isPresent()) {
-            Chef c = chefData.get();
-            c.setUsername(chef.getUsername());
-            c.setMail(chef.getMail());
-            return new ResponseEntity<>(repository.save(c), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+//        Chef chefData = repository.findById(id);
+//
+//        if (chefData.isPresent()) {
+//            Chef c = chefData.get();
+//            c.setUsername(chef.getUsername());
+//            c.setMail(chef.getMail());
+//            return new ResponseEntity<>(repository.save(c), HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
     }
 }

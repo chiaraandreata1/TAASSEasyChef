@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+//@EnableDiscoveryClient
 public class EasyChef4Application {
 
 	public static void main(String[] args) {

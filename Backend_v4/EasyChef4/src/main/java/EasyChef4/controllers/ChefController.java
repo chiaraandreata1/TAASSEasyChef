@@ -1,9 +1,7 @@
 package EasyChef4.controllers;
 
 import EasyChef4.models.Chef;
-import EasyChef4.rabbit.MQConfig;
 import EasyChef4.repositories.ChefRepository;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +29,10 @@ public class ChefController {
         return chefs;
     }
 
-    @GetMapping(value = "chefs/findById/{id}")
-    public List<Chef> findByName(@PathVariable Long id) {
+    @GetMapping(value = "chefs/getbyid/{id}")
+    public Optional<Chef> findById(@PathVariable Long id) {
 
-        List<Chef> customers = repository.findById(id);
+        Optional<Chef> customers = repository.findById(id);
         return customers;
     }
 
@@ -61,19 +59,20 @@ public class ChefController {
         return new ResponseEntity<>("All chefs have been deleted!", HttpStatus.OK);
     }
 
-    @PutMapping("/chefs/editchef/{id}")
-    public ResponseEntity<Chef> updateChef(@PathVariable("id") long id, @RequestBody Chef chef) {
+    @PutMapping("/chefs/edichefs/{id}")
+    public ResponseEntity<Chef> updateCustomer(@PathVariable("id") long id, @RequestBody Chef chef) {
         System.out.println("Update Chef with ID = " + id + "...");
 
-//        Chef chefData = repository.findById(id);
-//
-//        if (chefData.isPresent()) {
-//            Chef c = chefData.get();
-//            c.setUsername(chef.getUsername());
-//            c.setMail(chef.getMail());
-//            return new ResponseEntity<>(repository.save(c), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
+        Optional<Chef> customerData = repository.findById(id);
+
+        if (customerData.isPresent()) {
+            Chef c = customerData.get();
+            c.setUsername(chef.getUsername());
+            c.setMail(chef.getMail());
+            return new ResponseEntity<>(repository.save(c), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
+
 }

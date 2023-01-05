@@ -1,0 +1,44 @@
+server:
+  port: 8080
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone:
+        ${EUREKA_SERVER:http://eurekaservice:8761/eureka}
+  instance:
+    appname: gatewayservice
+    instanceId: gatewayservice
+
+spring:
+  application:
+    name: gatewayservice
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: chefservice
+          uri: lb://chefservice
+          predicates:
+            - Path=/api/v1/chefs/**
+        - id: recipeservice
+          uri: lb://recipeservice
+          predicates:
+            - Path=/api/v1/recipes/**
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+#          predicates:
+#            - name: Path
+#              args:
+#                pattern: "'lb://' + serviceId.toLowerCase()+'/**'"
+#          filters:
+#            - name: RewritePath
+#              args:
+#                regexp: "'lb://' + serviceId.toLowerCase() + '/(?<remaining>.*)'"
+#                replacement: "'/${remaining}'"

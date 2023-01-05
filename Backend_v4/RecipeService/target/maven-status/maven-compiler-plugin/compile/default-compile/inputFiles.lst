@@ -1,0 +1,10 @@
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\models\Recipe.java
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\models\Ingredient.java
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\controllers\IngredientController.java
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\rabbit\Message.java
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\repositories\IngredientRepository.java
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\rabbit\RabbitMqConfig.java
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\repositories\RecipeRepository.java
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\Recipe4Application.java
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\rabbit\Receiver.java
+C:\Users\Chiara\Desktop\taass29-12\Backend_v4\RecipeService\src\main\java\Recipe4\controllers\RecipeController.java

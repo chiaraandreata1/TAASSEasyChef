@@ -1,0 +1,10 @@
+#spring:
+#  cloud:
+#    kubernetes:
+#      enable: true
+#    loadbalancer:
+#      ribbon:
+#        enabled: false
+#eureka:
+#  client:
+#    enabled: false

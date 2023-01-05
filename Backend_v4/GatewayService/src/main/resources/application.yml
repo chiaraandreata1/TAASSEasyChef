@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  spring:
+    application:
+      name: gatewayservice
+    cloud:
+      gateway:
+        routes:
+          - id: chefservice
+            url: lb://chefservice
+            predicates:
+              - Path = /api/v1/chefs/**
+          - id: recipeservice
+            url: lb://recipeservice
+            predicates:
+              - Path = /api/v1/ingredients/**, /api/v1/recipes/**
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}

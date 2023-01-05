@@ -1,0 +1,10 @@
+Recipe4\repositories\RecipeRepository.class
+Recipe4\rabbit\Receiver.class
+Recipe4\rabbit\RabbitMqConfig.class
+Recipe4\controllers\RecipeController.class
+Recipe4\models\Ingredient.class
+Recipe4\Recipe4Application.class
+Recipe4\controllers\IngredientController.class
+Recipe4\repositories\IngredientRepository.class
+Recipe4\rabbit\Message.class
+Recipe4\models\Recipe.class

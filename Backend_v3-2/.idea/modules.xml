@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Backend_v4.iml" filepath="$PROJECT_DIR$/.idea/Backend_v4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EasyChef4/EasyChef4.iml" filepath="$PROJECT_DIR$/EasyChef4/EasyChef4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EurekaService/EurekaService.iml" filepath="$PROJECT_DIR$/EurekaService/EurekaService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GatewayService/GatewayService.iml" filepath="$PROJECT_DIR$/GatewayService/GatewayService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecipeService/RecipeService.iml" filepath="$PROJECT_DIR$/RecipeService/RecipeService.iml" />
+    </modules>
+  </component>
+</project>

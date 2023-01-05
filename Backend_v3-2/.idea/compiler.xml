@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="RecipeService" />
+        <module name="EasyChef4" />
+        <module name="GatewayService" />
+        <module name="EurekaService" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="EasyChef4" target="11" />
+      <module name="EurekaService" target="11" />
+      <module name="gatewayservice" target="17" />
+      <module name="GatewayService" target="11" />
+      <module name="RecipeService" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="EasyChef4" options="-parameters" />
+      <module name="EurekaService" options="-parameters" />
+      <module name="GatewayService" options="-parameters" />
+      <module name="RecipeService" options="-parameters" />
+      <module name="gatewayservice" options="-parameters" />
+    </option>
+  </component>
+</project>

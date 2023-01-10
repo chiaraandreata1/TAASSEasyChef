@@ -13,5 +13,5 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
     /*Recipe findRecipeById(Long idRecipe);
     List<Recipe> findAllByIdChef(Long idChef);
     List<Recipe> findAllByCookingMethod(String cookingMethod);
-    List<Recipe> findAllByIngredientContaining(Long idIngredient);*/
+    List<Recipe> findAllByIngredientContaining(String idIngredient);*/
 }

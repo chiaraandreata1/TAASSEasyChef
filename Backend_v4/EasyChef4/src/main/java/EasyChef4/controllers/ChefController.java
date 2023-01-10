@@ -65,20 +65,20 @@ public class ChefController {
         return new ResponseEntity<>("All chefs have been deleted!", HttpStatus.OK);
     }
 
-//    @PutMapping("/chefs/editchef/{id}")
-//    public ResponseEntity<Chef> updateChef(@PathVariable("id") long id, @RequestBody Chef chef) {
-//        System.out.println("Update Chef with ID = " + id + "...");
-//        Chef chefData = repository.findById(id);
-//
-//        if (chefData.isPresent()) {
-//            Chef c = chefData.get();
-//            c.setUsername(chef.getUsername());
-//            c.setMail(chef.getMail());
-//            return new ResponseEntity<>(repository.save(c), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @PutMapping("/chefs/editchef/{id}")
+    public ResponseEntity<Chef> updateChef(@PathVariable("id") long id, @RequestBody Chef chef) {
+        System.out.println("Update Chef with ID = " + id + "...");
+        Optional <Chef> chefData = repository.findById(id);
+
+        if (chefData.isPresent()) {
+            Chef c = chefData.get();
+            c.setUsername(chef.getUsername());
+            c.setMail(chef.getMail());
+            return new ResponseEntity<>(repository.save(c), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @PostMapping(value = "/chefs/msgToRecipe/")
     public ResponseEntity<String> postEnableLike(@RequestBody Message msg) {

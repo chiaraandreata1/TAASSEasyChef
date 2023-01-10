@@ -54,6 +54,24 @@ public class RecipeController {
         return rec;
     }
 
+    @GetMapping(value = "recipes/recipesbyingredient/{ingredient}")
+    public List<Recipe> findByIngredient(@PathVariable String ingredient) {
+        System.out.println("Searching recipes with ingredient = " + ingredient + "...");
+
+        List<Recipe> recipes = getAllRecipes();
+        List<Recipe> result = new ArrayList<Recipe>();
+        for(Recipe r: recipes){
+            List<String> ingredients = r.getIngredientsList();
+            for(String i: ingredients) {
+                if(i.equals(ingredient)){
+                    result.add(r);
+                }
+            }
+        }
+
+        return result;
+    }
+
     /*TODO: aggiungere ricerca per elenco ingredienti*/
     /*TODO: aggiungere ricerca per idChef nella lista ingredienti*/
 
@@ -87,7 +105,8 @@ public class RecipeController {
         return new ResponseEntity<>("All recipes have been deleted!", HttpStatus.OK);
     }
 
-    /* per modificare i parametri di una ricetta dato il suo id  DA VEDERE SE HA SENSO TENERE*/
+    /* per modificare i parametri di una ricetta dato il suo id */
+    /*Per non avere errori tutti i campi devono essere presenti nel Json */
     @PutMapping("/recipes/editrecipe/{id}")
     public ResponseEntity<Recipe> updateRecipe(@PathVariable("id") long id, @RequestBody Recipe recipe) {
         System.out.println("Update Recipe with ID = " + id + "...");
@@ -112,6 +131,7 @@ public class RecipeController {
         }
     }
 }
+
 
 
 

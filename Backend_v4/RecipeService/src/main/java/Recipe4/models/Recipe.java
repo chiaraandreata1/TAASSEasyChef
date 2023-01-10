@@ -126,6 +126,8 @@ public class Recipe {
         this.ingredientsList = ingredientsList;
     }
 
+
+
     public List<Long> getLikesList() { return likesList; }
 
     public void setLikesList(List<Long> likesList) { this.likesList = likesList;  }

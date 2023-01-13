@@ -1,0 +1,87 @@
+[
+    {
+        "request": "/ingredients/createingredient",
+        "type": "POST",
+        "body": {
+            "name": "uova"
+        }
+    },
+    {
+        "request": "/ingredients/allingredients",
+        "type": "GET",
+        "response": [
+            "uova",
+            "manzo",
+            "pollo"
+        ]
+    },
+    {
+        "request": "/cookingmethods/allcookingmethods",
+        "type": "GET",
+        "response": [
+            "forno",
+            "griglia",
+            "nessuno"
+        ]
+    },
+    {
+        "request": "/recipes/createrecipe",
+        "type": "POST",
+        "body": {
+            "title": "pizza",
+            "idChef": 2,
+            "numPortions": 4,
+            "cookingTime": 25,
+            "cookingMethod": "forno",
+            "category": "dessert",
+            "procedure": "prova prova provaa",
+            "ingredientsList": [
+                "zucchero",
+                "latte",
+                "farina",
+                "uova",
+                "mele"
+            ],
+            "likesList": [
+                1,
+                2
+            ]
+        }
+    },
+    {
+        "request": "/chefs/msgToRecipe",
+        "type": "POST",
+        "body": {
+            "idChef": 1,
+            "idRecipe": 1,
+            "enableLike": true
+        }
+    },
+    {
+        "request": "/recipes/recipesbycookingmethod/{method}",
+        "type": "GET",
+        "response": [
+            {
+                "idRecipe": 1,
+                "title": "pizza",
+                "idChef": 2,
+                "numPortions": 4,
+                "cookingTime": 25,
+                "cookingMethod": "forno",
+                "category": "dessert",
+                "procedure": "prova prova provaa",
+                "ingredientsList": [
+                    "zucchero",
+                    "latte",
+                    "farina",
+                    "uova",
+                    "mele"
+                ],
+                "likesList": [
+                    1,
+                    2
+                ]
+            }
+        ]
+    }
+]

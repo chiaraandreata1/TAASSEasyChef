@@ -132,6 +132,13 @@ public class Recipe {
 
     public void setLikesList(List<Long> likesList) { this.likesList = likesList;  }
 
+    public int countLikes(){
+        int counterLikes =0;
+        counterLikes = (int) this.likesList.size();
+        System.out.println("Tot Like for recipe= \n"+counterLikes);
+        return  counterLikes;
+    }
+
     public void addUserLike(Long idChef){
         System.out.println("idChef addUser before"+idChef);
         this.likesList.add(idChef);

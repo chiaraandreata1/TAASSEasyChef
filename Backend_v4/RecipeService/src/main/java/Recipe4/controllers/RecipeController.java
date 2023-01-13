@@ -1,11 +1,10 @@
 package Recipe4.controllers;
 
 import Recipe4.models.Recipe;
-import Recipe4.rabbit.Message;
-import Recipe4.rabbit.RabbitMqConfig;
 import Recipe4.repositories.RecipeRepository;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +36,14 @@ public class RecipeController {
         return recipes;
     }
 
+    /*per ottenere l'elenco ricette dato l'idChef dell'utente che le ha create */
+    @GetMapping(value = "recipes/recipesbyid/{idRecipe}")
+    public Recipe findById(@PathVariable Long idRecipe) {
+
+        Recipe rec = repository.findRecipeById(idRecipe);
+        return rec;
+    }
+
 
     /*per ottenere l'elenco ricette dato un certo ingrediente*/
     @GetMapping(value = "recipes/recipesbycookingmethod/{cookingMethod}")
@@ -54,6 +61,7 @@ public class RecipeController {
         return rec;
     }
 
+    /*per ottenere l'elenco delle ricette dato un ingrediente*/
     @GetMapping(value = "recipes/recipesbyingredient/{ingredient}")
     public List<Recipe> findByIngredient(@PathVariable String ingredient) {
         System.out.println("Searching recipes with ingredient = " + ingredient + "...");
@@ -72,10 +80,32 @@ public class RecipeController {
         return result;
     }
 
-    /*TODO: aggiungere ricerca per elenco ingredienti*/
-    /*TODO: aggiungere ricerca per idChef nella lista ingredienti*/
+
+    /* per ottenere T o F per sapere se idChef è presente alla lista dei like nella ricetta
+    @GetMapping(value = "recipes/recipeIsLiked/{idRecipe}/{ChefId}")
+    public boolean isRecipeLiked(@PathVariable Long idRecipe, Long ChefId) {
+        System.out.println("Checking if is recipe = " + idRecipe + " Liked by "+ChefId+"...\n");
+
+        Recipe recipe = repository.findRecipeById(idRecipe);
+        boolean isLiked = recipe.getLikesList().contains(ChefId);
+        return isLiked;
+    }*/
+
+    /* per ottenere numero di like di una ricetta dato il suo id
+    @GetMapping(value = "recipes/recipeslikescounter/{idRecipe}")
+    public Integer numberOfLikes(@PathVariable Long idRecipe) {
+        System.out.println("Counting number of likes for recipe = " + idRecipe + "...\n");
+
+        Recipe recipe = repository.findRecipeById(idRecipe);
+        int counter= recipe.countLikes();
+
+        System.out.println(counter +" likes for recipe = " + idRecipe + "...\n");
+        return counter;
+    }*/
+
 
     /* Per aggiungere una nuova ricetta*/
+    //@CrossOrigin(methods = {RequestMethod.OPTIONS, RequestMethod.POST})
     @PostMapping(value = "/recipes/createrecipe")
     public Recipe postRecipe(@RequestBody Recipe recipe) {
 
@@ -85,7 +115,8 @@ public class RecipeController {
         return _recip;
     }
 
-    /* Per cancellare una ricetta dato l'id*/
+
+    /* TODO: DA TESTARE Per cancellare una ricetta dato l'id*/
     @DeleteMapping("/recipes/deleterecipe/{id}")
     public ResponseEntity<String> deleteRecipe(@PathVariable("id") long id) {
         System.out.println("Delete Recipes with ID = " + id + "...");
@@ -116,14 +147,14 @@ public class RecipeController {
         if (recipeData.isPresent()) {
             Recipe _rec = recipeData.get();
             _rec.setTitle(recipe.getTitle());
-            _rec.setIdChef(recipe.getIdChef());
-            _rec.setNumPortions(recipe.getNumPortions());
-            _rec.setCookingTime(recipe.getCookingTime());
-            _rec.setCookingMethod(recipe.getCookingMethod());
-            _rec.setCategory(recipe.getCategory());
+            //_rec.setIdChef(recipe.getIdChef());
+            //_rec.setNumPortions(recipe.getNumPortions());
+            //_rec.setCookingTime(recipe.getCookingTime());
+            //_rec.setCookingMethod(recipe.getCookingMethod());
+            //_rec.setCategory(recipe.getCategory());
             _rec.setProcedure(recipe.getProcedure());
-            _rec.setIngredientsList(recipe.getIngredientsList());
-            _rec.setLikesList(recipe.getLikesList());
+            //_rec.setIngredientsList(recipe.getIngredientsList());
+            //_rec.setLikesList(recipe.getLikesList());
 
             return new ResponseEntity<>(repository.save(_rec), HttpStatus.OK);
         } else {

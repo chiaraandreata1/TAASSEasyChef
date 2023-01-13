@@ -80,7 +80,7 @@ public class ChefController {
         }
     }
 
-    @PostMapping(value = "/chefs/msgToRecipe/")
+    @PostMapping(value = "/chefs/msgToRecipe")
     public ResponseEntity<String> postEnableLike(@RequestBody Message msg) {
         System.out.println("Try to send user like to RecipeService...");
         template.convertAndSend(
@@ -88,6 +88,6 @@ public class ChefController {
                 RabbitMqConfig.ROUTING_KEY,
                 msg);
         System.out.println("Message sent.");
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Recipe liked", HttpStatus.OK);
     }
 }

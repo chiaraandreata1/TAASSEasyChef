@@ -37,7 +37,7 @@ public class RecipeController {
     }
 
     /*per ottenere l'elenco ricette dato l'idChef dell'utente che le ha create */
-    @GetMapping(value = "recipes/recipesbyid/{idRecipe}")
+    @GetMapping(value = "/recipes/recipesbyid/{idRecipe}")
     public Recipe findById(@PathVariable Long idRecipe) {
 
         Recipe rec = repository.findRecipeById(idRecipe);
@@ -46,7 +46,7 @@ public class RecipeController {
 
 
     /*per ottenere l'elenco ricette dato un certo ingrediente*/
-    @GetMapping(value = "recipes/recipesbycookingmethod/{cookingMethod}")
+    @GetMapping(value = "/recipes/recipesbycookingmethod/{cookingMethod}")
     public List<Recipe> findByCookingMethod(@PathVariable String cookingMethod) {
 
         List<Recipe> customers = repository.findByCookingMethod(cookingMethod);
@@ -54,7 +54,7 @@ public class RecipeController {
     }
 
     /*per ottenere l'elenco ricette dato l'idChef dell'utente che le ha create */
-    @GetMapping(value = "recipes/recipesbychef/{idChef}")
+    @GetMapping(value = "/recipes/recipesbychef/{idChef}")
     public List<Recipe> findByIdChef(@PathVariable Long idChef) {
 
         List<Recipe> rec = repository.findByIdChef(idChef);
@@ -62,7 +62,7 @@ public class RecipeController {
     }
 
     /*per ottenere l'elenco delle ricette dato un ingrediente*/
-    @GetMapping(value = "recipes/recipesbyingredient/{ingredient}")
+    @GetMapping(value = "/recipes/recipesbyingredient/{ingredient}")
     public List<Recipe> findByIngredient(@PathVariable String ingredient) {
         System.out.println("Searching recipes with ingredient = " + ingredient + "...");
 

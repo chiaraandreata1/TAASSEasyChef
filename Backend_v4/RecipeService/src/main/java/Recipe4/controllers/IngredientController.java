@@ -33,7 +33,7 @@ public class IngredientController {
 
 
     /*Per avere un ingrediente passando il suo nome come stringa*/
-    @GetMapping(value = "ingredients/name/{name}")
+    @GetMapping(value = "/ingredients/name/{name}")
     public List<Ingredient> findByName(@PathVariable String name) {
 
         List<Ingredient> customers = repository.findByName(name);

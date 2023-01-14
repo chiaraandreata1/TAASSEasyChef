@@ -35,7 +35,7 @@ public class ChefController {
         return chefs;
     }
 
-    @GetMapping(value = "chefs/findById/{id}")
+    @GetMapping(value = "/chefs/findById/{id}")
     public Optional<Chef> findByName(@PathVariable Long id) {
 
         Optional<Chef> customer = repository.findById(id);

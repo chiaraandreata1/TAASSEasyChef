@@ -14,7 +14,7 @@ services:
       POSTGRES_DB: chefdb
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      restart: unless-stopped
+      restart: on-failure
 
   dbrecipe:
     container_name: dbrecipe
@@ -29,7 +29,7 @@ services:
       POSTGRES_DB: recipedb
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      restart: unless-stopped
+      restart: on-failure
 
   rabbitmq:
     container_name: rabbitmq
@@ -39,7 +39,7 @@ services:
       - "15672:15672"
     networks:
       - easychefnet
-    restart: always
+    restart: on-failure
 
   eurekaservice:
     build: EurekaService
@@ -49,6 +49,7 @@ services:
       - "8761:8761"
     networks:
       - easychefnet
+    restart: on-failure
 
   gatewayservice:
     build: ApiGatewayService
@@ -62,6 +63,7 @@ services:
       - eurekaservice
     networks:
       - easychefnet
+    restart: on-failure
 
   chefservice:
     build: EasyChef4 #indica la cartella dove si trova il dockerfile di questo servizio
@@ -80,7 +82,6 @@ services:
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-#      restart: unless-stopped
     deploy:
       restart_policy:
         condition: on-failure
@@ -104,7 +105,6 @@ services:
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-#      restart: unless-stopped
     deploy:
       restart_policy:
         condition: on-failure

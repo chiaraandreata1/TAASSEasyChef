@@ -73,7 +73,7 @@ public class ChefController {
         if (chefData.isPresent()) {
             Chef c = chefData.get();
             c.setUsername(chef.getUsername());
-            c.setMail(chef.getMail());
+            //c.setMail(chef.getMail());
             return new ResponseEntity<>(repository.save(c), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

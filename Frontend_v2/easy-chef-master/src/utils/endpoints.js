@@ -2,20 +2,24 @@ import axios from 'axios';
 
 const baseUrl = (port = 8080) => `http://localhost:${port}/api/v1`;
 
+const createChefAPI = `${baseUrl(8082)}/chefs/createchef`;
+const updateChefAPI = `${baseUrl(8082)}/chefs/editchef`;
+
 const createIngredientAPI = `${baseUrl(8081)}/ingredients/createingredient`;
 const getAllIngredientsAPI = `${baseUrl(8081)}/ingredients/allingredients`;
 
-const createRecipeAPI = `${baseUrl()}/recipes/createrecipe`;
-const getRecipeByIdAPI = `${baseUrl()}/recipes/recipesbyid`
+const createRecipeAPI = `${baseUrl(8081)}/recipes/createrecipe`;
+const getRecipeByIdAPI = `${baseUrl(8081)}/recipes/recipesbyid`
 const getAllRecipesAPI = `${baseUrl()}/recipes/allrecipes`;
 const getRecipesByIngredientAPI = `${baseUrl()}/recipes/recipesbyingredient`;
 const getRecipesByCookingMethodAPI = `${baseUrl()}/recipes/recipesbycookingmethod`; // eg. `${getRecipesByCookingMethodAPI}/oven`
 const getRecipesByChefAPI = `${baseUrl()}/recipes/recipesbychef`;
-const delRecipeAPI = `${baseUrl()}/recipes/deleterecipe`;
-const putRecipeAPI = `${baseUrl()}/recipes/editrecipe`;
+const delRecipeAPI = `${baseUrl(8081)}/recipes/deleterecipe`;
+const putRecipeAPI = `${baseUrl(8081)}/recipes/editrecipe`;
 
 const getChefAPI = `${baseUrl()}/chefs/findById`;
-const msgToRecipeAPI = `${baseUrl(8080)}/chefs/msgToRecipe`;
+const getChefByMailAPI = `${baseUrl()}/chefs/findByMail`;
+const msgToRecipeAPI = `${baseUrl(8082)}/chefs/msgToRecipe`;
 
 const get = async (url) => {
     try{
@@ -60,6 +64,7 @@ const del = async (url) => {
 
 const put = async (url, body) => {
     try{
+        console.log("URL: ", url);
         console.log("BODY: ", body);
         const response = await axios.put(url, body, {
             headers: {
@@ -73,6 +78,9 @@ const put = async (url, body) => {
         return null;
     }
 }
+
+export const createChef = (username,mail) => post(createChefAPI, username, mail);
+export const updateChef = (id, newUsername) => put(`${updateChefAPI}/${id}`, newUsername);
 
 export const createIngredient = (ingredient) => post(createIngredientAPI, ingredient);
 export const getAllIngredients = () => get(getAllIngredientsAPI);
@@ -88,4 +96,5 @@ export const delRecipe = (id) => del(`${delRecipeAPI}/${id}`);
 export const putRecipe = (id, newRecipe) => put(`${putRecipeAPI}/${id}`, newRecipe);
 
 export const getChefById = (id) => get(`${getChefAPI}/${id}`);
+export const getChefByMail = (mail) => get(`${getChefByMailAPI}/${mail}`);
 export const msgToRecipe = (msg) => post(msgToRecipeAPI, msg);

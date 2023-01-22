@@ -91,7 +91,7 @@ export const Recipe = () => {
         async function postData(){
             const body = {
                 title: $(".recipe-info #title").text(),
-                procedure: recipe.procedure
+                procedure: $(".recipe-content #procedure").text()
             }
             await putRecipe(recipe.id, body);
         }
@@ -102,7 +102,7 @@ export const Recipe = () => {
         console.log($(".recipe-content #procedure").html($(".recipe-content #procedure").val().replace(/\r?\n/g, '<br />')));
         async function postData(){
             const body = {
-                title: recipe.title,
+                title: $(".recipe-info #title").text(),
                 procedure: $(".recipe-content #procedure").text()
             }
             await putRecipe(recipe.id, body);

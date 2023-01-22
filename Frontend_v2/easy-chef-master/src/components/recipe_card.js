@@ -36,7 +36,7 @@ export const RecipeCard = ({ recipe, from = null }) => {
         msgToRecipe(body);
 
         //update recipe state
-        navigate("/home");
+        window.location.href = "./home";
     }
 
     return (

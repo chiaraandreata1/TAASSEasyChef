@@ -42,6 +42,13 @@ public class ChefController {
         return customer;
     }
 
+    @GetMapping(value = "/chefs/findByMail/{mail}")
+    public List<Chef> findByMail(@PathVariable String mail) {
+
+        List<Chef> customer = repository.findByMail(mail);
+        return customer;
+    }
+
     @PostMapping(value = "/chefs/createchef")
     public Chef postChef(@RequestBody Chef chef) {
         return repository.save(new Chef(chef.getUsername(), chef.getMail()));

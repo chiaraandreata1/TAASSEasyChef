@@ -28,7 +28,7 @@ spring:
         - id: recipeservice
           uri: lb://recipeservice
           predicates:
-            - Path=/api/v1/recipes/**
+            - Path=/api/v1/recipes/**, /api/v1/ingredients/**
 #      discovery:
 #        locator:
 #          enabled: true
